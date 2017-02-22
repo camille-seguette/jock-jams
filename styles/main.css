@@ -52,3 +52,13 @@ body {
 @media (min-width: 1024px) {
     html { font-size: 120%; }
 }
+
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
