@@ -32,6 +32,21 @@ var albumMarconi = {
     ]
 };
 
+// My Album
+
+var albumOlin = {
+    title: 'BOM01',
+    artist: 'Olin',
+    label: 'Boundary Monument',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/04.png',
+    songs: [
+        { title: 'Conne', duration: '8:43' },
+        { title: 'Foist', duration: '6:35' },
+        { title: 'Biota', duration: '9:02' },
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -44,12 +59,14 @@ var createSongRow = function(songNumber, songName, songLength) {
       return template;
 };
 
+// GLOBAL SCOPE - Elements we want to populate with text
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -65,4 +82,15 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [albumPicasso, albumMarconi, albumOlin];
+    var index = 1;
+
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+          idex = 0;
+        }
+    });
 };
